@@ -1,0 +1,31 @@
+[
+	{
+		"title": "精华",
+		"tag": "good",
+		"bgColor": "FF7F0000"
+	},
+
+	{
+		"title": "问答",
+		"tag": "ask",
+		"bgColor": "FF7F0000"
+	},
+
+	{
+		"title": "主页",
+		"tag": "main",
+		"bgColor": "FF7F00FF"
+	},
+
+	{
+		"title": "分享",
+		"tag": "share",
+		"bgColor": "FF7F0000"
+	},
+
+	{
+		"title": "招聘",
+		"tag": "job",
+		"bgColor": "FF7F0000"
+	}
+]

@@ -1,0 +1,18 @@
+{
+	"RootView":{
+		"x":"0",
+		"width":"750",
+		"y":"0",
+		"type":"do_ALayout",
+		"views":[
+			{
+				"templates":"source://view/listview_cell_cell.ui",
+				"width":"750",
+				"id":"listview",
+				"type":"do_ListView",
+				"height":"1206"
+			}
+		],
+		"height":"1206"
+	}
+}
