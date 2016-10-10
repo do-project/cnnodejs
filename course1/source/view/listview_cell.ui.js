@@ -9,7 +9,8 @@ var core = require("do/core");
 var http = require("do/http");
 // sm
 var do_Page = sm("do_Page");
-//mm
+var do_App = sm("do_App");
+// mm
 var do_ListData = mm("do_ListData");
 // ui
 var root = ui('$');
@@ -24,10 +25,19 @@ var listview = ui('listview');
 })();
 
 // event
+listview.on("touch", function(index) {
+	var d = do_ListData.getOne(index);
+	do_App.openPage({
+		source : "source://view/topic/details.ui",
+		data : d,
+		statusBarState : "transparent",
+		animationType : "push_r2l_1"
+	});
+});
 do_Page.on("indexChanged", function(topic) {
 	var _topic = listview.tag;
 	if (_topic == topic) {
-		var url = "?page=1&mdrender=false&limit=10";
+		var url = "?page=1&limit=10";
 		if (topic != "main")
 			url = url + "&tab=" + topic;
 		http.ajax({
@@ -36,7 +46,7 @@ do_Page.on("indexChanged", function(topic) {
 			success : function(data) {
 				do_ListData.removeAll();
 				do_ListData.addData(data);
-				core.p(do_ListData);
+				// core.p(do_ListData);
 				listview.refreshItems();
 			}
 		})

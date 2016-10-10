@@ -35,7 +35,7 @@
 				"height":"76"
 			},
 			{
-				"width":"210",
+				"width":"-1",
 				"x":"176",
 				"y":"110",
 				"id":"do_LinearLayout_1",
@@ -44,7 +44,7 @@
 					{
 						"margin":"0,10,0,0",
 						"width":"-1",
-						"fontSize":"20",
+						"fontSize":"24",
 						"id":"count_label",
 						"type":"do_Label",
 						"height":"60"
@@ -52,9 +52,9 @@
 					{
 						"margin":"0,20,0,0",
 						"textAlign":"center",
-						"x":"19",
+						"x":"9",
 						"width":"40",
-						"fontSize":"20",
+						"fontSize":"24",
 						"id":"top_label",
 						"text":"顶",
 						"type":"do_Label",
@@ -63,9 +63,9 @@
 					},
 					{
 						"textAlign":"center",
-						"x":"79",
+						"x":"69",
 						"width":"40",
-						"fontSize":"20",
+						"fontSize":"24",
 						"id":"good_label",
 						"text":"精",
 						"type":"do_Label",
@@ -79,10 +79,10 @@
 			{
 				"margin":"0,20,0,0",
 				"textAlign":"right",
-				"x":"514",
-				"width":"200",
+				"x":"516",
+				"width":"198",
 				"y":"110",
-				"fontSize":"20",
+				"fontSize":"24",
 				"id":"last_reply_at_label",
 				"type":"do_Label",
 				"height":"60"

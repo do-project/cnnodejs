@@ -1,0 +1,10 @@
+{
+	"RootView":{
+		"bgColor":"000000FF",
+		"templates":"source://view/tab_cell.ui",
+		"width":"750",
+		"id":"segmentview",
+		"type":"do_SegmentView",
+		"height":"88"
+	}
+}

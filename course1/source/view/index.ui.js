@@ -10,36 +10,31 @@ var http = require("do/http");
 var do_InitData = sm("do_InitData");
 var do_Page = sm("do_Page");
 // ui
-var segmentview = ui("segmentview");
+var segmentview;
 var slideview = ui("slideview");
 // var
 var topics = [ "good","ask", "main","share", "job"];
-var segmentview_listdata, slideview_listdata;
+var slideview_listdata;
 
 // init
 (function() {
 	page.allowExit();
-	init_segmenetview();
+	ui("$").add("segmentview","source://view/topic_segmentview.ui",0,40);
+	segmentview = ui("segmentview");
 	init_slideview();
 })();
 // event
 slideview.on("indexChanged",function(d){
-	core.p(d+";"+topics[d])
+	segmentview.index = d; 
 	do_Page.fire("indexChanged",topics[d]);
 })
 do_Page.on("loaded",function(){
 	slideview.index = 2;
-	segmentview.index = 2;
+})
+do_Page.on("slideview_indexChanged",function(index){
+	slideview.index = index;
 })
 // private Function
-function init_segmenetview() {
-	segmentview_listdata = mm("do_ListData");
-	segmentview.bindItems(segmentview_listdata);
-	do_InitData.readFile("initdata://topic_string.json", function(d) {
-		segmentview_listdata.addData(d);
-		segmentview.refreshItems();
-	})
-}
 function init_slideview() {
 	slideview_listdata = mm("do_ListData");
 	slideview.bindItems(slideview_listdata);

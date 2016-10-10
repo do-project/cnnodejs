@@ -51,33 +51,41 @@ function callbackFunc(options, _oldData, data, status){
 			do_Storage.writeFile(_cacheFile, data);
 		}
 	}
+	var fdata=data;
 	if (options.dataFilter){
-		data=options.dataFilter.call(this, data);
+		fdata=options.dataFilter.call(this, data);
 	}
 	if (isSucceed){
-		if (options.success) options.success.call(this, data, status);
+		if (options.success) options.success.call(this, fdata, status);
 	}
 	else{
-		if (options.error) options.error.call(this, data, status);
+		if (options.error) options.error.call(this, fdata, status);
 	}
 	
-	if (options.complete) options.complete.call(this, data);
+	if (options.complete) options.complete.call(this, fdata);
 }
 function checkMock(_fUrl, _oldData, options){
 	if (!options.useMockData) return false;
 	for(var i =0;i< options.mockData.length; i++){
 		var _mock = options.mockData[i];
-		_mock.type=_mock.type||"GET";
-		if (_fUrl.indexOf(_mock.url) ==0 && _mock.result && _mock.type==options.type){
-			var _mockFile = "initdata://mock/" + _mock.result;
-			if (!do_InitData.fileExist(_mockFile)){
-				core.p("未找到mock文件：" + _mockFile);
-				return false;
+		_mock.status=_mock.status||200;
+		if ((core.isNull(_mock.type) || _mock.type == options.type) &&
+				(core.isNull(_mock.url) || _fUrl.indexOf(_mock.url) ==0) ){
+			if (_mock.data){
+				callbackFunc(options, _oldData, _mock.data, _mock.status);
+				return true;
 			}
-			do_InitData.readFile(_mockFile, function(data) {
-				callbackFunc(options, _oldData, data, _mock.status);
-			});
-			return true;
+			if (_mock.result){
+				var _mockFile = "initdata://mock/" + _mock.result;
+				if (!do_InitData.fileExist(_mockFile)){
+					core.p("未找到mock文件：" + _mockFile);
+					return false;
+				}
+				do_InitData.readFile(_mockFile, function(data) {
+					callbackFunc(options, _oldData, data, _mock.status);
+				});
+				return true;
+			}
 		}
 	}
 	core.p("=============> undefined http mock url： " + options.type + "：" + _fUrl);
@@ -143,8 +151,9 @@ function ajax( url, options){
 		var _cacheFile = "data://httpCache/" + d.type  +"/" + do_Algorithm.md5Sync(_fUrl);
 		if (do_Storage.fileExist(_cacheFile)){
 			do_Storage.readFile(_cacheFile, function(data) {
-				if (d.dataFilter) data=d.dataFilter.call(this, data);
-				if (d.success) d.success.call(this, data, 200);
+				var fdata=data;
+				if (d.dataFilter) fdata=d.dataFilter.call(this, data);
+				if (d.success) d.success.call(this, fdata, 200);
 				if (checkMock(_fUrl, data, d)) return;
 				callajax(_fUrl, data, d);
 			});
