@@ -6,10 +6,12 @@
 		"type":"do_ALayout",
 		"views":[
 			{
-				"templates":"source://view/listview_cell_cell.ui",
+				"isShowbar":"false",
+				"templates":"source://view/listview_cell_cell.ui,source://view/next_cell.ui",
 				"width":"750",
 				"id":"listview",
 				"type":"do_ListView",
+				"selectedColor":"0080FFFF",
 				"height":"1206"
 			}
 		],

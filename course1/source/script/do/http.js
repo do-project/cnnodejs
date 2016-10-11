@@ -106,8 +106,8 @@ function callajax(_fUrl, _oldData, options){
 		_http.body = builderurlencoded(options.data);
 	}
 	else{
-		_http.body = options.data;
-	}	
+		_http.body = JSON.stringify( options.data);
+	}
 	_http.method = options.type;
 	_http.timeout = options.timeout;
 	_http.contentType = options.contentType;

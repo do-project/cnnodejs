@@ -117,6 +117,18 @@ module.exports.toast = function(o){
 
 //---------------------------------------------------------------
 /**
+ * 显示错误提示 （弹出屏幕临时信息，同时打印调试信息） 
+ * @param o 弹出的内容，可以是字符串、数字、对象或数组对象等
+ */
+module.exports.error = function(o){
+	var s=o2string(o);
+	var do_Notification=d1.sm("do_Notification");
+	do_Notification.toast(s);
+	do_Notification.alert(s, "错误提示");
+};
+
+//---------------------------------------------------------------
+/**
  * 弹出新的页面
  * @param a,b,c,d,e,f,g,h 同do_App中openPage的参数
  */

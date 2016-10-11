@@ -213,7 +213,7 @@ http.ajax({
 	},
 	type:"GET",
 	success:function(data){
-		do_Global.setMemory("accessToken", _result.data.accessToken);
+		do_Global.setMemory("accessToken", _result.accessToken);
 	}
 });
 //httpSetting.js中的代码：
@@ -227,7 +227,7 @@ module.exports.options ={
 	beforeSend:function(options, do_Http){
 		//设置登录的token
 		var _token = do_Global.getMemory("accessToken");
-		do_Http.setRequestHeader("Authorization", _token);
+		do_Http.setRequestHeader("Authorization", "Bearer " + _token);
 	},
 	//是否使用模拟数据
 	useMockData:true,
@@ -270,7 +270,7 @@ http.ajax({
 	},
 	type:"GET",
 	success:function(data){
-		do_Global.setMemory("accessToken", _result.data.accessToken);
+		do_Global.setMemory("accessToken", _result.accessToken);
 	}
 });
 //httpSetting.js中的代码：
@@ -287,7 +287,7 @@ module.exports.options ={
 	beforeSend:function(options, do_Http){
 		//设置登录的token
 		var _token = do_Global.getMemory("accessToken");
-		do_Http.setRequestHeader("Authorization", _token);
+		do_Http.setRequestHeader("Authorization", "Bearer " + _token);
 	},
 	//是否使用模拟数据
 	useMockData:true,
@@ -302,7 +302,7 @@ module.exports.options ={
 	   beforeSend:function(options, do_Http){
 		   	//设置登录的token
 			var _token = do_Global.getMemory("accessToken");
-			do_Http.setRequestHeader("Authorization", _token);
+			do_Http.setRequestHeader("Authorization", "Bearer " + _token);
 	   		//显示等待窗口
 			page.showView("source://script/do/view/waitting.ui");
 		},

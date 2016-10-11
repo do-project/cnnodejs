@@ -11,7 +11,7 @@ var lastShowedView=null;
  * 允许页面关闭，支持android的返回键关闭，IOS的滑动手势关闭
  * @param _buttons [可空] 指定可关闭功能的按钮，或者按钮列表；
  * @param _options [可空] 配置选项:
- 		//ios手势关闭页面
+ 		//支持ios手势关闭页面
     	supportPanClosePage:true
  */
 module.exports.allowClose = function(_buttons, _options){
@@ -110,17 +110,29 @@ module.exports.allowExit = function(_buttons){
  * @param _rootView 当前的根视图
  * @param _onShowView 显示视图的操作
  * @param _onHideView 关闭视图的操作
+ * @param _options [可空] 配置选项:
+ 		//允许用户通过UI操作关闭OpenView的视图
+    	allowUserCloseView:true
  */
-module.exports.allowHide = function(_rootView, _onShowView, _onHideView){
+module.exports.allowHide = function(_rootView, _onShowView, _onHideView, _options){
+	var d=core.getOptions(_options, "do/pageSetting");
+	_rootView.visible = false;
 	_rootView.on("onShowView", function(data){
 		_onShowView.call(this, data);
 	});
 	_rootView.on("onHideView", function(data){
 		_onHideView.call(this, data);
 	});
-	_rootView.on("touch", function(){
-		_onHideView.call(this);
-	});
+	if (d.allowUserCloseView){
+		_rootView.on("touch", function(){
+			_onHideView.call(this);
+		});
+	}
+	else{
+		_rootView.on("touch", function(){
+			//屏蔽touch事件穿透
+		});
+	}
 };
 
 //---------------------------------------------------------------
@@ -155,14 +167,18 @@ module.exports.allowHideKeyboard = function(_buttons){
 var __addedviews={};
 //---------------------------------------------------------------
 /**
- * 发送onShowView事件，在屏幕上显示指定路径的View
+ * 在屏幕上显示指定路径的View，并对其发送onShowView事件
  * 需要在目标view的代码里订阅onShowView和onHideView事件
  * @param _path view的路径
- * @param _data [可空] 传入的参数
+ * @param [可空] 传入的参数
  * @param _x [可空] x坐标
  * @param _y [可空] y坐标
+ * @param _options [可空] 配置选项:
+ 		//允许用户通过UI操作关闭OpenView的视图
+    	allowUserCloseView:true
  */
-module.exports.showView = function(_path, _data, _x, _y){
+module.exports.showView = function(_path, _data, _x, _y, _options){
+	var d=core.getOptions(_options, "do/pageSetting");
 	var _rootView = d1.ui("$");	
 	if (core.isNull(_rootView) || "do_ALayout" != _rootView.getType()) return;
 	_x=_x||0;
@@ -174,12 +190,17 @@ module.exports.showView = function(_path, _data, _x, _y){
 	}
 	_view=d1.ui(_viewAddr);
 	_view.fire("onShowView", _data);
-	lastShowedView=_view;
+	if (d.allowUserCloseView){
+		lastShowedView=_view;
+	}
+	else {
+		lastShowedView=null;
+	}
 };
 
 //---------------------------------------------------------------
 /**
- * 发送onHideView事件，隐藏指定路径的View （针对于ShowView的功能）
+ * 隐藏指定路径的View （针对于ShowView的功能），对其发送onHideView事件
  * 需要在目标view的代码里订阅onShowView和onHideView事件
  * @param _path view的路径
  * @param _data [可空] 传入的参数

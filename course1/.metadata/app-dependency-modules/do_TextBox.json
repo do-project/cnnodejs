@@ -160,6 +160,20 @@
       }
     },
     {
+      "ID": "maxLines",
+      "Name": "最大行数",
+      "Type": "Number",
+      "Type_JavaScript": "Number",
+      "DefaultValue": "0",
+      "EditType": "0",
+      "Group": "",
+      "Description": "最大行数，说明：此属性只有组件高度为-1时才生效；设置文本内容输入最大行数，如输入文本超过了最大行值则行数不再继续增加，同时可以通过上下滚动来查看输入的内容；缺省为0行，表示不限制行数；Windows平台不支持",
+      "Design": {
+        "Type": "UInteger",
+        "Data": []
+      }
+    },
+    {
       "ID": "text",
       "Name": "文本内容",
       "Type": "String",

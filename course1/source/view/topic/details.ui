@@ -14,7 +14,7 @@
 						"x":"40",
 						"width":"120",
 						"y":"120",
-						"id":"do_ALayout_2",
+						"id":"avator",
 						"type":"do_ALayout",
 						"isStretch":"false",
 						"views":[
@@ -98,7 +98,7 @@
 				"bgColor":"000000AA",
 				"x":"600",
 				"y":"1164",
-				"id":"do_ALayout_5",
+				"id":"reply_list",
 				"type":"do_ALayout",
 				"isStretch":"false",
 				"views":[
