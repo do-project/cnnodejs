@@ -4,10 +4,7 @@
  * @Author : and
  * @Timestamp : 2016-09-26
  */
-// sm
-var do_Page = sm("do_Page");
 // ui
-var tag_label = ui("tag_label");
 var root = ui("$");
 // init
 root.setMapping({
@@ -17,5 +14,5 @@ root.setMapping({
 })
 // event
 root.on("touch", function() {
-	do_Page.fire("slideview_indexChanged", tag_label.tag);
+	sm("do_Page").fire("slideview_indexChanged", ui("tag_label").tag);
 })

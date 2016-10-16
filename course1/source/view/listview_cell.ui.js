@@ -10,16 +10,15 @@ var http = require("do/http");
 var page = require("do/page");
 // sm
 var do_Page = sm("do_Page");
-var do_App = sm("do_App");
 // mm
 var do_ListData = mm("do_ListData");
 // ui
-var root = ui('$');
 var listview = ui('listview');
+// var
 var current_page = 0;
 // init
 (function() {
-	root.setMapping({
+	ui('$').setMapping({
 		"listview.tag" : "tag"
 	})
 	listview.bindItems(do_ListData);
@@ -28,7 +27,7 @@ var current_page = 0;
 // event
 listview.on("touch", function(index) {
 	var d = do_ListData.getOne(index);
-	do_App.openPage({
+	sm("do_App").openPage({
 		source : "source://view/topic/details.ui",
 		data : d,
 		statusBarState : "transparent",

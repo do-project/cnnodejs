@@ -1,6 +1,6 @@
 {
 	"RootView":{
-		"bgColor":"00000000",
+		"bgColor":"00000055",
 		"x":"0",
 		"width":"750",
 		"y":"0",
@@ -8,17 +8,30 @@
 		"type":"do_ALayout",
 		"views":[
 			{
-				"progressWidth":"20",
+				"progressWidth":"30",
+				"type":"do_ProgressBar2",
 				"progressColor":"00FF00FF",
 				"progressBgColor":"555555FF",
-				"x":"325",
-				"y":"176",
-				"fontSize":"38",
+				"x":"300",
+				"width":"150",
+				"y":"900",
+				"fontSize":"22",
 				"style":"cycle",
 				"id":"do_ProgressBar2_show",
-				"type":"do_ProgressBar2",
-				"fontColor":"000000FF",
-				"height":"100"
+				"fontColor":"FF0000FF",
+				"height":"150"
+			},
+			{
+				"textAlign":"center",
+				"x":"250",
+				"width":"250",
+				"y":"1052",
+				"fontSize":"28",
+				"id":"do_Label_prompt",
+				"text":"请稍后",
+				"type":"do_Label",
+				"fontColor":"00FF00FF",
+				"height":"56"
 			}
 		],
 		"height":"1334"

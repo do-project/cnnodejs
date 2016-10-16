@@ -36,3 +36,14 @@ Array.prototype.remove = function (item) {
 	var _index = this.indexOf(item);
 	if(_index != -1) this.splice(_index, 1); 
 };
+
+//---------------------------------------------------------------
+/**
+ * 遍历处理每一个元素
+ * @param func 回调函数
+ */
+Array.prototype.each = function (func) { 
+	for (var i = 0; i < this.length; i++) {
+		func.call(i, this[i]);
+	}
+};

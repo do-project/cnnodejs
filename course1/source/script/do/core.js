@@ -124,7 +124,7 @@ module.exports.error = function(o){
 	var s=o2string(o);
 	var do_Notification=d1.sm("do_Notification");
 	do_Notification.toast(s);
-	do_Notification.alert(s, "错误提示");
+	do_Notification.p(s, "错误提示");
 };
 
 //---------------------------------------------------------------
@@ -186,4 +186,12 @@ module.exports.getOptions = function(options, file){
  */
 module.exports.getUUID = function(){
 	return newUUID();
+};
+
+//---------------------------------------------------------------
+/**
+ * 判断当前是否处于Page页面的环境下 (非app.js的入口环境)
+ */
+module.exports.inPage = function(){
+	return __address !=undefined && __address!=null && __address.length >0;
 };

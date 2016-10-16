@@ -5,17 +5,15 @@
  * @Timestamp : 2016-10-09
  */
 // sm
-var do_InitData = sm("do_InitData");
 var do_Page = sm("do_Page");
 // ui
 var segmentview = ui("segmentview");
-// var
-var segmentview_listdata;
+// mm
+var segmentview_listdata = mm("do_ListData");
 // init
 (function() {
-	segmentview_listdata = mm("do_ListData");
 	segmentview.bindItems(segmentview_listdata);
-	do_InitData.readFile("initdata://topic_string.json", function(d) {
+	sm("do_InitData").readFile("initdata://topic_string.json", function(d) {
 		segmentview_listdata.addData(d);
 		segmentview.refreshItems();
 	})

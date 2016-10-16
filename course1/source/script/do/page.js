@@ -6,6 +6,7 @@ var core=require("do/core");
 var d1=require("deviceone");
 
 var lastShowedView=null;
+
 //---------------------------------------------------------------
 /**
  * 允许页面关闭，支持android的返回键关闭，IOS的滑动手势关闭
